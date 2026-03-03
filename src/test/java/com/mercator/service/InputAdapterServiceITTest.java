@@ -1,5 +1,7 @@
 package com.mercator.service;
 
+import com.mercator.components.ApplePromotionRule;
+import com.mercator.components.OrangePromotionRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,7 +18,8 @@ class InputAdapterServiceITTest {
 
     @BeforeEach
     void setup() {
-        adapterService = new InputAdapterService(new CartService(new ItemPriceService()));
+        var discountService = new DiscountService(new ItemPriceService(), List.of(new ApplePromotionRule(), new OrangePromotionRule()));
+        adapterService = new InputAdapterService(new CartService(discountService));
     }
 
     @Test
@@ -25,7 +28,7 @@ class InputAdapterServiceITTest {
 
         var total = adapterService.calculatePrice(input);
 
-        assertEquals(new BigDecimal("1.45"), total);
+        assertEquals(new BigDecimal("0.85"), total);
     }
 
     @Test

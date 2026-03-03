@@ -17,3 +17,14 @@ Technical test for mercator shopping cart application
 
 ### Tools
 - Java 21
+
+### Flow of action
+InputAdapterService
+        ↓
+CartService
+        ↓
+DiscountService (Rule Engine)
+        ↓
+Promotion Rules (Strategy Pattern)
+        ↓
+ItemPriceService

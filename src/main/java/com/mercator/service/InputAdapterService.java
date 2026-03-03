@@ -45,7 +45,7 @@ public class InputAdapterService {
 
         var order = cartService.checkout(items);
 
-        log.info("Items: {} ", order.quantities());
+        log.info("Items: {} ", order.itemPromotionalResults());
         log.info("Total price: {} ", order.totalPrice());
         return order.totalPrice();
     }
